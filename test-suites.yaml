@@ -1,0 +1,24 @@
+version: "3"
+services:
+  vendor-portal:
+    image: nal10/selenium
+#    depends_on:
+##      - hub
+#      - chrome
+##      - firefox
+    environment:
+      - BROWSER=chrome
+      - HUB_HOST=hub
+      - THREAD_COUNT=3
+      - TEST_SUITE=vendor-portal.xml
+    volumes:
+      - ./output/vendor-portal:/home/selenium-docker/test-output
+  flight-reservation:
+    image: nal10/selenium
+    environment:
+      - BROWSER=firefox
+      - HUB_HOST=hub
+      - THREAD_COUNT=4
+      - TEST_SUITE=flight-reservation.xml
+    volumes:
+      - ./output/flight-reservation:/home/selenium-docker/test-output
